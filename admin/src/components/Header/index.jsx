@@ -6,7 +6,7 @@ export const Header = () => {
     <Box background="neutral100">
       <BaseHeaderLayout
         title={'Google Authentication for Mobile Apps'}
-        as="h2"
+        tag="h2"
       />
     </Box>
   );

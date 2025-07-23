@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Box, Typography } from "@strapi/design-system";
-import { Link } from "@strapi/design-system/v2";
+import { Box, Typography, Link } from "@strapi/design-system";
 import { useFetchClient } from '@strapi/strapi/admin';
 import { EditForm } from "../EditForm";
 import { PLUGIN_ID } from "../../pluginId";

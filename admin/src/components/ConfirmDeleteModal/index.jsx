@@ -53,7 +53,7 @@ const ConfirmDeleteModal = ({ onClose, onUpdate, id }) => {
           <Typography
             fontWeight="bold"
             textColor="neutral800"
-            as="h2"
+            tag="h2"
             id="title"
           >
             Delete confirmation
@@ -64,7 +64,7 @@ const ConfirmDeleteModal = ({ onClose, onUpdate, id }) => {
             <Typography
               fontWeight="bold"
               textColor="neutral800"
-              as="h2"
+              tag="h2"
               id="text"
             >
               Are you sure you want to delete CLIENT_ID for this app?
@@ -74,7 +74,7 @@ const ConfirmDeleteModal = ({ onClose, onUpdate, id }) => {
               <Typography
                 fontWeight="bold"
                 textColor="danger600"
-                as="h2"
+                tag="h2"
                 id="error"
               >
                 {message}
@@ -85,7 +85,7 @@ const ConfirmDeleteModal = ({ onClose, onUpdate, id }) => {
               <Typography
                 fontWeight="bold"
                 textColor="success600"
-                as="h2"
+                tag="h2"
                 id="success"
               >
                 {message}

@@ -1,6 +1,6 @@
 {
   "name": "strapi-plugin-google-auth-mobile",
-  "version": "1.0.0",
+  "version": "4.0.0",
   "description": "Authenticate via Google using mobile devices",
   "strapi": {
     "name": "google-auth-mobile",

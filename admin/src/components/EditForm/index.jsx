@@ -9,7 +9,7 @@ import {
   Alert,
 } from "@strapi/design-system";
 import { useFetchClient } from '@strapi/strapi/admin';
-import { Write, Lock, Cross, Trash } from "@strapi/icons";
+import { Feather, Lock, Cross, Trash } from "@strapi/icons";
 import { PLUGIN_ID } from "../../pluginId";
 import ConfirmDeleteModal from "../ConfirmDeleteModal";
 import { TIMEOUT, wait } from "../../utils/alertsTimeout";
@@ -168,7 +168,7 @@ export const EditForm = ({ item, onUpdate }) => {
           </Typography>
           <Flex gap="5">
             <Button
-              endIcon={buttonsDisabled.edit ? <Write /> : <Cross />}
+              endIcon={buttonsDisabled.edit ? <Feather /> : <Cross />}
               onClick={handleEdit}
               variant={buttonsDisabled.edit ? "secondary" : "tertiary"}
             >

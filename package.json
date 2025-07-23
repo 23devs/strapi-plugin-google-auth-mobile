@@ -1,48 +1,70 @@
 {
-  "name": "strapi-plugin-google-auth-mobile",
-  "version": "4.0.0",
-  "description": "Authenticate via Google using mobile devices",
+  "version": "5.0.0",
+  "keywords": [],
+  "type": "commonjs",
+  "exports": {
+    "./package.json": "./package.json",
+    "./strapi-admin": {
+      "source": "./admin/src/index.js",
+      "import": "./dist/admin/index.mjs",
+      "require": "./dist/admin/index.js",
+      "default": "./dist/admin/index.js"
+    },
+    "./strapi-server": {
+      "source": "./server/src/index.js",
+      "import": "./dist/server/index.mjs",
+      "require": "./dist/server/index.js",
+      "default": "./dist/server/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "strapi-plugin build",
+    "watch": "strapi-plugin watch",
+    "watch:link": "strapi-plugin watch:link",
+    "verify": "strapi-plugin verify"
+  },
+  "dependencies": {
+    "@strapi/design-system": "^2.0.0-rc.29",
+    "@strapi/icons": "^2.0.0-rc.29",
+    "google-auth-library": "^10.1.0",
+    "react-intl": "^7.1.11"
+  },
+  "devDependencies": {
+    "@strapi/sdk-plugin": "^5.3.2",
+    "@strapi/strapi": "^5.18.1",
+    "prettier": "^3.6.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.30.1",
+    "styled-components": "^6.1.19"
+  },
+  "peerDependencies": {
+    "@strapi/sdk-plugin": "^5.3.2",
+    "@strapi/strapi": "^5.18.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.30.1",
+    "styled-components": "^6.1.19"
+  },
   "strapi": {
-    "name": "google-auth-mobile",
-    "description": "This plugin allows authentication via Google using mobile devices",
     "kind": "plugin",
-    "displayName": "Google Auth Mobile"
+    "name": "google-auth-mobile",
+    "displayName": "Google Auth Mobile",
+    "description": "This plugin allows authentication via Google using mobile devices"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/23devs/strapi-plugin-google-auth-mobile.git"
   },
-  "dependencies": {
-    "@strapi/design-system": "^1.6.3",
-    "@strapi/helper-plugin": "^4.6.0",
-    "@strapi/icons": "^1.6.3",
-    "prop-types": "^15.7.2",
-    "google-auth-library": "^9.1.0"
-  },
-  "devDependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^5.3.4",
-    "styled-components": "^5.3.6"
-  },
-  "peerDependencies": {
-    "react": "^17.0.0 || ^18.0.0",
-    "react-dom": "^17.0.0 || ^18.0.0",
-    "react-router-dom": "^5.3.4",
-    "styled-components": "^5.3.6",
-    "@strapi/strapi": "^4.0.0"
-  },
-  "author": {
-    "name": "23devs"
-  },
-  "maintainers": [
-    {
-      "name": "23devs"
-    }
-  ],
   "engines": {
-    "node": ">=16.0.0 <=20.x.x",
+    "node": ">=18.0.0 <=22.x.x",
     "npm": ">=6.0.0"
   },
-  "license": "MIT"
+  "name": "strapi-plugin-google-auth-mobile",
+  "description": "Authenticate via Google using mobile devices",
+  "license": "MIT",
+  "author": "23devs <developer@23devs.com>"
 }

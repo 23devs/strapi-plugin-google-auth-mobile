@@ -1,0 +1,47 @@
+import { errors } from '@strapi/utils';
+import { GOOGLE_AUTH, PLUGIN_ID, PLUGIN_API_NAMES, USERS_PERMISSIONS, JWT } from '../constants';
+
+const { ApplicationError, ForbiddenError } = errors;
+
+// https://github.com/strapi/strapi/blob/2d97100ef73dbf1378ee138cf52f414d1b32a0c5/packages/plugins/users-permissions/server/controllers/auth.js#L27C1-L32C3
+const sanitizeUser = (user, ctx) => {
+  const { auth } = ctx.state;
+  const userSchema = strapi.getModel(PLUGIN_API_NAMES.USER_PERMISSIONS_USER);
+
+  return strapi.contentAPI.sanitize.output(user, userSchema, { auth });
+};
+
+// added route to verify google token and register/login user
+export async function connect(ctx) {
+  const { access_token } = ctx.request.body;
+
+  try {
+    const user = await strapi
+      .plugin(PLUGIN_ID)
+      .service(GOOGLE_AUTH)
+      .connect(access_token);
+
+    if (user.blocked) {
+      const err = new ForbiddenError(
+        'Your account has been blocked by an administrator'
+      );
+
+      return ctx.badRequest(err);
+    }
+
+    return ctx.send({
+      jwt: strapi
+        .plugin(USERS_PERMISSIONS)
+        .service(JWT)
+        .issue({ id: user.id }),
+      user: await sanitizeUser(user, ctx),
+    });
+  } catch (error) {
+    const err = new ApplicationError(error.message);
+    return ctx.badRequest(err);
+  }
+}
+
+export default {
+  connect,
+};

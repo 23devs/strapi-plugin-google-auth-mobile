@@ -5,7 +5,7 @@ import { Layouts } from '@strapi/admin/strapi-admin';
 export const Header = () => {
   return (
     <Box background="neutral100">
-      <Layouts.BaseHeaderLayout
+      <Layouts.BaseHeader
         title={'Google Authentication for Mobile Apps'}
         tag="h2"
       />

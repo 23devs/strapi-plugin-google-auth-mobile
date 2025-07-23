@@ -1,10 +1,11 @@
 import React from 'react';
-import { Box, BaseHeaderLayout } from '@strapi/design-system';
+import { Box } from '@strapi/design-system';
+import { Layouts } from '@strapi/admin/strapi-admin';
 
 export const Header = () => {
   return (
     <Box background="neutral100">
-      <BaseHeaderLayout
+      <Layouts.BaseHeaderLayout
         title={'Google Authentication for Mobile Apps'}
         tag="h2"
       />

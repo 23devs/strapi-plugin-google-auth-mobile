@@ -1,15 +1,15 @@
-import { Main, ContentLayout } from '@strapi/design-system';
-import { useIntl } from 'react-intl';
+// import { useIntl } from 'react-intl';
+import { Layouts } from '@strapi/admin/strapi-admin';
 
 import { Header } from '../../components/Header';
 import { SettingsBlock } from '../../components/SettingsBlock';
 
 const HomePage = () => {
   return (
-    <ContentLayout>
+    <Layouts.Content>
       <Header></Header>
       <SettingsBlock></SettingsBlock>
-    </ContentLayout>
+    </Layouts.Content>
   );
 };
 

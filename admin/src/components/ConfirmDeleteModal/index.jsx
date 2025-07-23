@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import {
   Button,
-  ModalBody,
-  ModalFooter,
-  ModalHeader,
-  ModalLayout,
+  Modal,
   Portal,
   Typography,
   Flex,
@@ -48,69 +45,71 @@ const ConfirmDeleteModal = ({ onClose, onUpdate, id }) => {
 
   return (
     <Portal>
-      <ModalLayout onClose={onClose} labelledBy="title" width="420px">
-        <ModalHeader>
-          <Typography
-            fontWeight="bold"
-            textColor="neutral800"
-            tag="h2"
-            id="title"
-          >
-            Delete confirmation
-          </Typography>
-        </ModalHeader>
-        <ModalBody>
-          <Flex direction="column" gap="16px">
+      <Modal.Root onClose={onClose} labelledBy="title" width="420px">
+        <Modal.Content>
+          <Modal.Header>
             <Typography
               fontWeight="bold"
               textColor="neutral800"
               tag="h2"
-              id="text"
+              id="title"
             >
-              Are you sure you want to delete CLIENT_ID for this app?
+              Delete confirmation
             </Typography>
-
-            {isError && (
+          </Modal.Header>
+          <Modal.Body>
+            <Flex direction="column" gap="16px">
               <Typography
                 fontWeight="bold"
-                textColor="danger600"
+                textColor="neutral800"
                 tag="h2"
-                id="error"
+                id="text"
               >
-                {message}
+                Are you sure you want to delete CLIENT_ID for this app?
               </Typography>
-            )}
 
-            {isSuccess && (
-              <Typography
-                fontWeight="bold"
-                textColor="success600"
-                tag="h2"
-                id="success"
-              >
-                {message}
-              </Typography>
-            )}
-          </Flex>
-        </ModalBody>
-        <ModalFooter
-          startActions={
-            <>
-              {!loading && (
-                <Button variant="danger" onClick={handleDelete}>
-                  Yes
-                </Button>
+              {isError && (
+                <Typography
+                  fontWeight="bold"
+                  textColor="danger600"
+                  tag="h2"
+                  id="error"
+                >
+                  {message}
+                </Typography>
               )}
-              {loading && <Button loading>Loading...</Button>}
-            </>
-          }
-          endActions={
-            <Button onClick={onClose} variant="tertiary">
-              Cancel
-            </Button>
-          }
-        />
-      </ModalLayout>
+
+              {isSuccess && (
+                <Typography
+                  fontWeight="bold"
+                  textColor="success600"
+                  tag="h2"
+                  id="success"
+                >
+                  {message}
+                </Typography>
+              )}
+            </Flex>
+          </Modal.Body>
+          <ModalFooter
+            startActions={
+              <>
+                {!loading && (
+                  <Button variant="danger" onClick={handleDelete}>
+                    Yes
+                  </Button>
+                )}
+                {loading && <Button loading>Loading...</Button>}
+              </>
+            }
+            endActions={
+              <Button onClick={onClose} variant="tertiary">
+                Cancel
+              </Button>
+            }
+          />
+        </Modal.Content>
+      </Modal.Root>
     </Portal>
   );
 };

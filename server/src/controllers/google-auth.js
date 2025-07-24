@@ -13,7 +13,7 @@ const sanitizeUser = (user, ctx) => {
 
 // added route to verify google token and register/login user
 export async function connect(ctx) {
-  const { access_token } = ctx.request.body;
+  const { access_token } = ctx.request.body ?? {};
 
   try {
     const user = await strapi

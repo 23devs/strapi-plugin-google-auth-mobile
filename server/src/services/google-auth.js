@@ -55,8 +55,7 @@ export default ({ strapi }) => {
         throw new ApplicationError('Invalid google auth token');
       }
     } catch (error) {
-      console.log(error.message);
-      throw new ApplicationError('Invalid google auth token');
+      throw new ApplicationError(error.message);
     }
   };
 

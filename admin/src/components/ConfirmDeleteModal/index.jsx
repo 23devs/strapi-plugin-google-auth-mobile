@@ -10,13 +10,14 @@ import { useFetchClient } from '@strapi/strapi/admin';
 import { PLUGIN_ID } from "../../pluginId";
 import { ERROR, SUCCESS, TIMEOUT, wait } from "../../utils/alertsTimeout";
 
-const ConfirmDeleteModal = ({ onClose, onUpdate, documentId }) => {
+const ConfirmDeleteModal = ({ onClose, onUpdate, documentId, isOpen }) => {
   const { del } = useFetchClient();
 
   const [loading, setLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [message, setMessage] = useState("");
+  const [open, setOpen] = useState(isOpen);
 
   const handleStatus = async (status, message) => {
     status === SUCCESS ? setIsSuccess(true) : setIsError(true);
@@ -43,74 +44,69 @@ const ConfirmDeleteModal = ({ onClose, onUpdate, documentId }) => {
     }
   };
 
+  const onOpenChange = (isOpen) => {
+    setOpen(isOpen);
+
+    if (!isOpen) {
+      onClose();
+    }
+  };
+
   return (
-    <Portal>
-      <Modal.Root onClose={onClose} labelledBy="title" width="420px">
-        <Modal.Content>
-          <Modal.Header>
+    <Modal.Root open={open} onOpenChange={onOpenChange} labelledBy="title" width="420px">
+      <Modal.Content>
+        <Modal.Header>
+          <Typography
+            fontWeight="bold"
+            textColor="neutral800"
+            tag="h2"
+            id="title"
+          >
+            Delete confirmation
+          </Typography>
+        </Modal.Header>
+        <Modal.Body>
+          <Flex direction="column" gap="16px">
             <Typography
               fontWeight="bold"
               textColor="neutral800"
               tag="h2"
-              id="title"
+              id="text"
             >
-              Delete confirmation
+              Are you sure you want to delete CLIENT_ID for this app?
             </Typography>
-          </Modal.Header>
-          <Modal.Body>
-            <Flex direction="column" gap="16px">
+
+            {isError && (
               <Typography
                 fontWeight="bold"
-                textColor="neutral800"
+                textColor="danger600"
                 tag="h2"
-                id="text"
+                id="error"
               >
-                Are you sure you want to delete CLIENT_ID for this app?
+                {message}
               </Typography>
+            )}
 
-              {isError && (
-                <Typography
-                  fontWeight="bold"
-                  textColor="danger600"
-                  tag="h2"
-                  id="error"
-                >
-                  {message}
-                </Typography>
-              )}
-
-              {isSuccess && (
-                <Typography
-                  fontWeight="bold"
-                  textColor="success600"
-                  tag="h2"
-                  id="success"
-                >
-                  {message}
-                </Typography>
-              )}
-            </Flex>
-          </Modal.Body>
-          <Modal.Footer
-            startActions={
-              <>
-                {!loading && (
-                  <Button variant="danger" onClick={handleDelete}>
-                    Yes
-                  </Button>
-                )}
-                {loading && <Button loading>Loading...</Button>}
-              </>
-            }
-            endActions={
-              <Button onClick={onClose} variant="tertiary">
-                Cancel
-              </Button>
-            }
-          />
-        </Modal.Content>
-      </Modal.Root>
-    </Portal>
+            {isSuccess && (
+              <Typography
+                fontWeight="bold"
+                textColor="success600"
+                tag="h2"
+                id="success"
+              >
+                {message}
+              </Typography>
+            )}
+          </Flex>
+        </Modal.Body>
+        <Modal.Footer>
+          <Modal.Close>
+            <Button variant="tertiary" onClick={onClose}>Cancel</Button>
+          </Modal.Close>
+          <Button type="submit" variant="danger" onClick={handleDelete}>Yes</Button>
+        </Modal.Footer>
+      </Modal.Content>
+    </Modal.Root>
   );
 };
 

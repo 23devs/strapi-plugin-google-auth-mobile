@@ -186,6 +186,7 @@ export const EditForm = ({ item, onUpdate }) => {
                 onClose={closeDeleteModal}
                 onUpdate={onUpdate}
                 documentId={item.documentId}
+                isOpen={modalOpened}
               ></ConfirmDeleteModal>
             )}
           </Flex>

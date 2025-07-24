@@ -68,8 +68,8 @@ export const SettingsBlock = () => {
           Update your Google Authentication Details for existing applications.
         </Typography>
       </Box>
-      {data.map((item) => (
-        <EditForm item={item} onUpdate={getAllCreds}></EditForm>
+      {data.map((item, index) => (
+        <EditForm item={item} onUpdate={getAllCreds} key={index}></EditForm>
       ))}
     </Box>
   );

@@ -47,10 +47,7 @@ export const SettingsBlock = () => {
       <Box padding={4}>
         <Typography variant="epsilon">
           You can also update your Credentials via &nbsp;
-          <Link
-            isInternal
-            href="/admin/content-manager/collectionType/plugin::google-auth-mobile.credential?page=1&pageSize=10&sort=client_id:ASC"
-          >
+          <Link href="/admin/content-manager/collection-types/plugin::google-auth-mobile.credential">
             Content Manager
           </Link>
         </Typography>

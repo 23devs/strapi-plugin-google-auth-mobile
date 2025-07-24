@@ -13,9 +13,9 @@ export const SettingsBlock = () => {
   const getAllCreds = async () => {
     try {
       const res = await get(`/${PLUGIN_ID}/credentials`);
-      if (res?.status === 200 && res?.data?.length > 0) {
+      if (res?.data?.length > 0) {
         setData(res.data);
-      } else if (res?.status === 200 && res?.data?.length === 0) {
+      } else if (res?.data?.length === 0) {
         setError("Credentials have not been set yet");
       } else {
         throw Error();

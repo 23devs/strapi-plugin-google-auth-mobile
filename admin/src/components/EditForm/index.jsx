@@ -109,7 +109,7 @@ export const EditForm = ({ item, onUpdate }) => {
     setLoadingOnSave(true);
 
     try {
-      await put(`/${PLUGIN_ID}/credentials/${item.id}`, {
+      await put(`/${PLUGIN_ID}/credentials/${item.documentId}`, {
         data: {
           client_id: form.clientIdInputValue,
           platform: form.platformIdInputValue,
@@ -185,7 +185,7 @@ export const EditForm = ({ item, onUpdate }) => {
               <ConfirmDeleteModal
                 onClose={closeDeleteModal}
                 onUpdate={onUpdate}
-                id={item.id}
+                documentId={item.documentId}
               ></ConfirmDeleteModal>
             )}
           </Flex>

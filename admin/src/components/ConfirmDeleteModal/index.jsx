@@ -10,7 +10,7 @@ import { useFetchClient } from '@strapi/strapi/admin';
 import { PLUGIN_ID } from "../../pluginId";
 import { ERROR, SUCCESS, TIMEOUT, wait } from "../../utils/alertsTimeout";
 
-const ConfirmDeleteModal = ({ onClose, onUpdate, id }) => {
+const ConfirmDeleteModal = ({ onClose, onUpdate, documentId }) => {
   const { del } = useFetchClient();
 
   const [loading, setLoading] = useState(false);
@@ -35,7 +35,7 @@ const ConfirmDeleteModal = ({ onClose, onUpdate, id }) => {
     setLoading(true);
 
     try {
-      await del(`/${PLUGIN_ID}/credentials/${id}`);
+      await del(`/${PLUGIN_ID}/credentials/${documentId}`);
       await onUpdate();
       await handleStatus(SUCCESS, "Entry was deleted successfully!");
     } catch (error) {
@@ -91,7 +91,7 @@ const ConfirmDeleteModal = ({ onClose, onUpdate, id }) => {
               )}
             </Flex>
           </Modal.Body>
-          <ModalFooter
+          <Modal.Footer
             startActions={
               <>
                 {!loading && (
